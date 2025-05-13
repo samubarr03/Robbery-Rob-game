@@ -1,0 +1,26 @@
+# Ignora tutto dentro la cartella build
+/build/*
+
+# Tranne l'eseguibile sfml-game (se si chiama così)
+!/build/sfml-game
+
+# File temporanei ed editor
+steps.txt
+*.o
+*.obj
+*.log
+*.tmp
+*~
+.DS_Store
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Eseguiti su Linux
+*.out
+
+# VSCode settings (opzionale)
+.vscode/
