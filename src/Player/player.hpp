@@ -1,11 +1,16 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "../Utils/utils.hpp"
+#include "../Matrix/matrix.hpp"
 
 class Player {
 public:
-    Player();
+    Player(Matrix& matrix);
+    bool canMoveTo(sf::Vector2i pos) const;
     void handleInput();
-    void draw(sf::RenderWindow& window);
+    void updatePosition();
+    sf::Vector2i getPosition() const;
 private:
-    sf::Vector2i position; // In tile coordinates
+    sf::Vector2i position;
+    Matrix& matrix;
 };

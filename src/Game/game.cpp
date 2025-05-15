@@ -1,6 +1,13 @@
 #include <game.hpp>
 
-Game::Game() : window(sf::VideoMode(windowWidth, windowHeight), "Robbery Rob") {}
+Game::Game() 
+    :window(sf::VideoMode( 
+        sf::VideoMode::getDesktopMode().width,
+        sf::VideoMode::getDesktopMode().height),
+        "Robbery Rob"),
+    matrix(),
+    player(matrix)
+{}
 
 void Game::init() {
     //creo il gioco e in loop ridisegno tutta la matrice
@@ -11,8 +18,9 @@ void Game::init() {
                 window.close();
 
         player.handleInput();
+        player.updatePosition();
+
         matrix.draw(window);
-        player.draw(window);
         window.display();
     }
 }

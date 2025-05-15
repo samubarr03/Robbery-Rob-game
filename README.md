@@ -27,3 +27,20 @@ Per ora utilizzerò una **griglia 64 x 64** e il **player 2 x 2** sarà colorato
 - **Ho notato qualche problema con la creazione di `CMakeLists.txt`** per l'aggiunta di tutte le directory, e in fase di compilazione volevo tenere solo `utils.hpp`, però ho dovuto creare anche `utils.cpp` e organizzare i file.
 
 - **Ho dovuto ridimensionare la grandezza delle celle** in base alla grandezza della finestra / numero di celle, perché altrimenti uscivano dalla finestra visibile.
+
+## Step 3
+
+Durante questo step mi sono reso conto che il mio approccio non era seguibile e ho trasformato la matrice disegnata in una matrice di numeri creando i tipi che potrebbero servirmi in futuro:
+
+```c
+    TYPE_FLOOR = 0,
+    TYPE_PLAYER = 1,
+    TYPE_GUARD = 2,
+    TYPE_FURNITURE = 3,
+    TYPE_LOOT = 4,
+    TYPE_VISUAL_GUARD = 5,
+    TYPE_WALL = 6
+  ```  
+Ho riorganizzato le classi tenendo solo un punto in cui la matrice viene disegnata e nella classe player la gestione della posizione di esso. Ho tolto anche tutte le costanti perchè le informazioni che contenevano me le calcolo dalla grandezza dello schermo del player e dalla matrice.
+
+La matrice ora è più piccola di 64x64 ma solo per fare i test. Il prossimo passaggio sarà implementarla da un file.txt.
