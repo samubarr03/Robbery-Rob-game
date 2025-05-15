@@ -1,28 +1,47 @@
 #include "matrix.hpp"
 
 Matrix::Matrix() {
-    //creo la matrice
-    map = {
-        {1, 1, 0, 0,0,0,0,0,0,0,0,0,0},
-        {1, 1, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-        {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
-    };   
+    std::ifstream file("maps/map.txt");
+    if (!file.is_open()) {
+        std::cerr << "Impossibile aprire il file" ;
+        return;
+    }
+
+    map.clear();
+    std::string line;
+
+    while (std::getline(file, line)) {
+        if (line.length() != 64) {
+            std::cerr << "Errore: ogni riga deve avere esattamente 64 caratteri, ma è lunga " << line.length() ;
+            return;
+        }
+
+        std::vector<int> row;
+        for (char c : line) {
+            if (std::isdigit(c)) {
+                row.push_back(c - '0');
+            } else {
+                std::cerr << "Errore: carattere non numerico nella mappa" ;
+                return;
+            }
+        }
+
+        map.push_back(row);
+    }
+
+    file.close();
+
+    // Controlla che ci siano esattamente 64 righe
+    if (map.size() != 64) {
+        std::cerr << "Errore: il file deve contenere esattamente 64 righe, ne ha " << map.size() ;
+        return;
+    }
 
     rows = map.size();
     cols = map[0].size();
     cellWidth = sf::VideoMode::getDesktopMode().width / cols;
     cellHeight = sf::VideoMode::getDesktopMode().height / rows;
-    space = 2;
+    space = 0;
 }
 
 std::vector<std::vector<int>>& Matrix::getMap() {

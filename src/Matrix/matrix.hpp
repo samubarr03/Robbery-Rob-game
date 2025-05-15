@@ -1,6 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Utils/utils.hpp"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 class Matrix {
 public:
