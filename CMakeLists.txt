@@ -1,33 +1,36 @@
-cmake_minimum_required(VERSION 3.10)
-project(RobberyRob)
+cmake_minimum_required(VERSION 3.28)
+project(RobberyRob LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
-
-# File sorgenti
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
-file(GLOB_RECURSE GAME_SRC src/Game/*.cpp)
-file(GLOB_RECURSE MATRIX_SRC src/Matrix/*.cpp)
-file(GLOB_RECURSE PLAYER_SRC src/Player/*.cpp)
-
-# Cartella eseguibile
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Creo l' eseguibile
-add_executable(robbery-rob
-    ${SOURCES}
-    ${GAME_SRC}
-    ${MATRIX_SRC}
-    ${PLAYER_SRC}
+include(FetchContent)
+FetchContent_Declare(SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 3.0.0
+    GIT_SHALLOW ON
+    SYSTEM
+)
+FetchContent_MakeAvailable(SFML)
+
+# TAPPA 01
+add_executable(Tappa01
+    Tappa01/main.cpp
+    Tappa01/Game/game.cpp
+    Tappa01/Matrix/matrix.cpp
+    Tappa01/Player/player.cpp
+    Tappa01/Utils/utils.cpp
+)
+target_link_libraries(Tappa01 PRIVATE SFML::Graphics)
+
+target_include_directories(Tappa01 PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa01/Game
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa01/Matrix
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa01/Player
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa01/Utils
 )
 
-# Link a SFML
-target_link_libraries(robbery-rob sfml-graphics sfml-window sfml-system)
 
-# Aggiungo gli header
-target_include_directories(robbery-rob
-    PUBLIC
-    ${CMAKE_SOURCE_DIR}/src/Game
-    ${CMAKE_SOURCE_DIR}/src/Matrix
-    ${CMAKE_SOURCE_DIR}/src/Player
-)
+add_custom_command(TARGET Tappa01 POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:Tappa01>/resources)

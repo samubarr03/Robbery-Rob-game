@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Mouse.hpp>
 #include "../Matrix/matrix.hpp"
 #include "../Player/player.hpp"
 #include "../Utils/utils.hpp"
@@ -55,6 +56,4 @@ private:
     int GRID_OFFSET_Y;
 
     int selectedTool;
-
-
 };

@@ -15,28 +15,29 @@ Player::Player(Matrix& matrix) : matrix(matrix) {
 void Player::handleInput() {
     std::vector<std::vector<int>>& map = matrix.getMap();
     sf::Vector2i newPos = position;
-
-    if ((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && position.y > 0) {
+    
+if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) && position.y > 0) {
         newPos.y--;
-    } else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) && position.y < matrix.getRows() - 2) {
+    } else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) && position.y < matrix.getRows() - 2) {
         newPos.y++;
-    } else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && position.x > 0) {
+    } else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) && position.x > 0) {
         newPos.x--;
-    } else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && position.x < matrix.getCols() - 2) {
+    } else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) && position.x < matrix.getCols() - 2) {
         newPos.x++;
     }
 
     //controllo che la nuova posizione sia il player o il terreno calpestabile
     
-if (
-    (map[newPos.y][newPos.x] == TYPE_FLOOR  || map[newPos.y][newPos.x] == TYPE_PLAYER) &&
-    (map[newPos.y][newPos.x + 1] == TYPE_FLOOR || map[newPos.y][newPos.x + 1] == TYPE_PLAYER)&&
-    (map[newPos.y + 1][newPos.x] == TYPE_FLOOR || map[newPos.y + 1][newPos.x] == TYPE_PLAYER)&&
-    (map[newPos.y + 1][newPos.x + 1] == TYPE_FLOOR || map[newPos.y + 1][newPos.x + 1] == TYPE_PLAYER)
-    ) {
-           position = newPos;
+    if (
+        (map[newPos.y][newPos.x] == TYPE_FLOOR  || map[newPos.y][newPos.x] == TYPE_PLAYER) &&
+        (map[newPos.y][newPos.x + 1] == TYPE_FLOOR || map[newPos.y][newPos.x + 1] == TYPE_PLAYER)&&
+        (map[newPos.y + 1][newPos.x] == TYPE_FLOOR || map[newPos.y + 1][newPos.x] == TYPE_PLAYER)&&
+        (map[newPos.y + 1][newPos.x + 1] == TYPE_FLOOR || map[newPos.y + 1][newPos.x + 1] == TYPE_PLAYER)
+        ) {
+            position = newPos;
     }
 }
+
 void Player::updatePosition() {
     std::vector<std::vector<int>>& map = matrix.getMap(); 
     for (int y = 0; y < matrix.getRows(); y++) {

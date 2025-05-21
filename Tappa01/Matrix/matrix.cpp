@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 
 Matrix::Matrix() {
-    std::ifstream file("maps/map.txt");
+    std::ifstream file("resources/map.txt");
     if (!file.is_open()) {
         std::cerr << "Impossibile aprire il file" ;
         return;
@@ -39,8 +39,8 @@ Matrix::Matrix() {
 
     rows = map.size();
     cols = map[0].size();
-    cellWidth = sf::VideoMode::getDesktopMode().width / cols;
-    cellHeight = sf::VideoMode::getDesktopMode().height / rows;
+    cellWidth = sf::VideoMode::getDesktopMode().size.x / cols;
+    cellHeight = sf::VideoMode::getDesktopMode().size.y / rows;
     space = 0;
 }
 
@@ -64,7 +64,7 @@ void Matrix::draw(sf::RenderWindow& window) {
     for (int x = 0; x < rows; x++) {
         for (int y = 0; y < cols; y++) {
            sf::RectangleShape cell(sf::Vector2f(cellWidth, cellHeight));
-            cell.setPosition(y * (cellWidth + space), x * (cellHeight + space));
+            cell.setPosition({sf::Vector2f(x * cellWidth, y * cellHeight)});
             cell.setOutlineThickness(1);
             cell.setOutlineColor(sf::Color::Black);
 

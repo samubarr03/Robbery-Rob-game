@@ -1,9 +1,6 @@
 # Ignora tutto dentro la cartella build
 /build/*
 
-# Tranne l'eseguibile sfml-game (se si chiama così)
-!/build/sfml-game
-
 # File temporanei ed editor
 steps.txt
 *.o
@@ -24,3 +21,5 @@ Makefile
 
 # VSCode settings (opzionale)
 .vscode/
+
+Steps.txt

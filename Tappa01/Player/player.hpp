@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Keyboard.hpp>
+
 #include "../Utils/utils.hpp"
 #include "../Matrix/matrix.hpp"
 

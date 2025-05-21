@@ -1,15 +1,18 @@
 #File per la build e l' avvio automatico del gioco
+set -e
 
 # Creo la cartella build se non esiste
-if [ ! -d "build" ]; then
-  mkdir build
-fi
+mkdir -p build
+cd build
 
-# Genero i file per la compilazione
-cmake -B build
+# Compilo
+cmake ..
+make -j$(nproc)
 
-# Compilo il progetto
-cmake --build build --target robbery-rob
+# Inserisco le risorse
+mkdir -p bin/resources
+cp -r ../resources/* bin/resources/
 
-# Lancio l' eseguibile
-./build/bin/robbery-rob
+# Lancio l'eseguibile
+cd bin
+./Tappa01
