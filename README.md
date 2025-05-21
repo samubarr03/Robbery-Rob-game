@@ -55,3 +55,32 @@ ho creato una schermata iniziale con 2 bottoni:
 
 Alla fine delle modifiche cliccando su **salva** la mappa viene automoaticamente salvata.  
 In questo modo la creazione delle mappe sarà molto più veloce e c'è la possibilità che anche il player si crei delle mappe e con la possibilità in seguito di impostarne la difficoltà.
+
+## Step 1.0.0
+In questa versione ho adattato il mio progetto a un **pattern generale**, riorganizzando i file:
+
+- Le **immagini**, le **mappe** e i **file di risorse** si trovano ora all'interno della cartella `resources/`.
+- I **file sorgente relativi alla tappa 1** sono stati spostati nella cartella `Tappa01/`.
+
+Ho inoltre aggiornato la versione di **SFML** dalla `2.5` alla più recente `3.0`.
+
+Fortunatamente, non ho riscontrato troppe difficoltà nel processo, se non la necessità di **dichiarare tutti i componenti nel costruttore**.
+
+Per aiutarmi nella migrazione, ho fatto riferimento alla documentazione ufficiale disponibile qui:  
+🔗 [SFML Migration Guide](https://github.com/SFML/SFML/blob/master/migration.md)
+
+ A livello di migliorie effettive nel gioco, in questa fase **non ne sono state svolte**.
+
+
+# Step 02.0.0
+
+In questo step ho: 
+- Aggiunto **Seleziona mappa** e **Salva mappa** tramite una finestra di dialogo, mi è stato utile il [forum SFML dialog](https://en.sfml-dev.org/forums/index.php?topic=29473.0)
+che mi ha portato a conoscienza della libreria [portable-file-dialogs](https://github.com/samhocevar/portable-file-dialogs)  
+- Corretto degli errori di movimento del player ( relativi a una confusione fra x e y)
+- Aggiunto le texture del pavimento 
+
+Ora la schermata di gioco si presenta così:
+
+![Step 2 - Screenshot gioco](./resources/Step2-game.png)
+
