@@ -82,5 +82,21 @@ che mi ha portato a conoscienza della libreria [portable-file-dialogs](https://g
 
 Ora la schermata di gioco si presenta così:
 
-![Step 2 - Screenshot gioco](./resources/Step2-game.png)
+![Step 2](./resources/Step2-game.png)
 
+
+# Step 3.0.0
+In questo step ho aggiunto:
+- **Le guardie** facendo una brutta versione dalla classe player. Fino ad ora ho solo sviluppato l' algoritmo che a inizio gioco visualizza tutte le guardie e crea ogni guardia inserendola in un vector apposta di Guardie.
+- Le texture per i muri
+
+Ho anche fixato:
+- La visualizzazione della texture del player
+- Un altro problema di segmentation faul perchè il player andava fuori dalla mappa  
+
+Problemi riscontrati:  
+Ho avuto qualche problema solo nella creazione del vector di guardie perchè non ricordavo si potesse passare un solo parametro facendo il push_back di una class. Ho fixato subito leggendo questa discussione  [Stack overflow push_back ](https://stackoverflow.com/questions/12083070/c-vectors-and-errors-no-instance-of-overloaded-function).
+
+Ora quando si inizia una nuova partita si può osservare questa grafica:
+
+![Step 3](./resources/step3.png)
