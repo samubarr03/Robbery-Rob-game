@@ -100,3 +100,65 @@ Ho avuto qualche problema solo nella creazione del vector di guardie perchè non
 Ora quando si inizia una nuova partita si può osservare questa grafica:
 
 ![Step 3](./resources/step3.png)
+
+## Step 4.0.0
+
+In questo step ho innanzitutto cambiato metodo per la selezione e il salvataggio di una mappa creata.  
+Prima mi appoggiavo a una libreria esterna che mi apriva un dialog dal quale potevo selezionare qualsiasi file dal computer. Ora invece stampo i nomi dei file .txt  in questo modo:
+
+![Step 4](./resources/Step-4.png)
+
+Applico un background nero e, sopra di esso, i nomi dei file disponibili per la scelta. Inoltre, faccio scrivere manualmente il nome della mappa per il salvataggio.
+
+Mi sto anche dedicando al refactoring, cercando di usare una sola funzione per disegnare la mappa, sia quando si gioca che quando si sta creando.  
+Fatto questo, ho anche racchiuso in una funzione (messa nella classe `Matrix`) il posizionamento di un item scelto nella modalità "disegna mappa".
+
+La funzione che ho creato e che reacchiude le 2 citate per disegnare la mappa è la seguente : 
+
+```cpp
+void Matrix::draw(sf::RenderWindow &window, bool isGameMode)
+{
+    if (!isGameMode)
+    {
+        /* calcolo la posizione dela griglia:
+            LARGHEZZA: da 1/3 sinistra a 10 px meno della fine dello schermo
+            ALTEZZA: da 10 px sotto il limite a 10 px sopra il minimo
+            */
+        GRID_OFFSET_X = sf::VideoMode::getDesktopMode().size.x / 3;
+        GRID_OFFSET_Y = 10;
+        // calcolo il cell size
+        cellWidth = (sf::VideoMode::getDesktopMode().size.x - GRID_OFFSET_X - 10) / GRID_SIZE;
+        cellHeight = sf::VideoMode::getDesktopMode().size.y / rows;
+    }
+    else
+    {
+        GRID_OFFSET_X = 0;
+        GRID_OFFSET_Y = 0;
+        cellWidth = (sf::VideoMode::getDesktopMode().size.x) / GRID_SIZE;
+        cellHeight = sf::VideoMode::getDesktopMode().size.y / rows;
+    }
+
+    for (int x = 0; x < cols; x++)
+    {
+        for (int y = 0; y < rows; y++)
+        {
+            sf::RectangleShape cell(sf::Vector2f(cellWidth, cellHeight));
+            cell.setPosition({x * cellWidth + GRID_OFFSET_X,
+                              y * cellHeight + GRID_OFFSET_Y});
+            switch (map[x][y])
+            {
+            case TYPE_FLOOR:
+                cell.setTexture(&floorTexture);
+                break;
+            case TYPE_PLAYER:
+                cell.setTexture(&playerTexture);
+                break;
+            case TYPE_WALL:
+                cell.setTexture(&wallTexture);
+                break;
+            }
+
+            window.draw(cell);
+        }
+    }
+}

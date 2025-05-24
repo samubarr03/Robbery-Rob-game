@@ -80,3 +80,28 @@ add_custom_command(TARGET Tappa03 POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:Tappa03>/resources)
 
+    # TAPPA 04
+add_executable(Tappa04
+    Tappa04/main.cpp
+    Tappa04/Game/game.cpp
+    Tappa04/Matrix/matrix.cpp
+    Tappa04/Player/player.cpp
+    Tappa04/Utils/utils.cpp
+    Tappa04/Guard/guard.cpp
+)
+target_link_libraries(Tappa04 PRIVATE SFML::Graphics)
+
+target_include_directories(Tappa04 PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa04/Game
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa04/Matrix
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa04/Player
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa04/Utils
+    ${CMAKE_CURRENT_SOURCE_DIR}/Tappa04/Guard
+)
+
+add_custom_command(TARGET Tappa04 POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:Tappa04>/resources)
+
+
+
