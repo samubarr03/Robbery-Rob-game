@@ -162,3 +162,37 @@ void Matrix::draw(sf::RenderWindow &window, bool isGameMode)
         }
     }
 }
+```
+
+## Step 5.0.0
+
+In questo step ho iniziato creando due funzioni in `Guard`, simili a quelle presenti in `Player`.  
+Una serve per gestire il movimento della guardia tramite la generazione di un numero random da 1 a 4,  
+e l'altra mi permette di aggiornare la mappa.
+
+Poi sono partito dall’idea di caricare anche le texture dell’arredamento e delle guardie,  
+ma riflettendoci e cercando texture su internet mi sono reso conto che il mio approccio non è ottimale  
+se voglio gestire molte texture.  
+Così ho creato una `struct`:
+
+```cpp
+struct Texture {
+    int type;
+    std::string name;
+    int width;
+    int height;
+    sf::Texture texture;
+};
+```
+e una funzione che passati i parametri:
+
+- `type`: ID corrispondente dell' enum
+- `&name`: nome del file
+- `w`: larghezza in celle
+- `h`: altezza in celle
+
+che carica automaticamente la texture.
+
+A questo punto, ho anche aggiornato le funzioni che si occupano del posizionamento sulla mappa: non utilizzo più uno `switch`, visto che si presenterebbero più di 30 casi ma 
+avendo una `map` con `ID e Texture`. Vado direttamente a prendere la texture dalla mappa e la posiziono su n celle a seconda del valore di `width` e `height` dentro la struct texture
+
