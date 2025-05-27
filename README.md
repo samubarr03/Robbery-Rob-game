@@ -224,3 +224,22 @@ Ora la schermata di gioco si presenta così:
 
 Inoltre ho capito come gestire la velocità delle guardie usando il delta time `dt`,  
 seguendo alcuni suggerimenti trovati su [SFML Forum](https://en.sfml-dev.org/forums/index.php?topic=7636.0).
+
+
+
+## Step 8.0.0
+
+In questa versione ho fixato alcuni movimenti del player: prima veniva disegnato due volte, una volta mentre era fermo e un'altra mentre venivano letti i comandi di input.
+
+Ho aggiunto anche la logica per il loot da prendere e per l'exit, che si attiva solo quando si prende tutto il loot.
+
+Inoltre, ho inserito gli sprite per la schermata di **vittoria** (win) e di **game over**, che dovrebbero rimanere visibili per 5 secondi e poi riportare il giocatore alla schermata principale, ma questo non funziona ancora correttamente.
+
+Avendo aggiunto nuovi elementi alla mappa, le mappe dello **step 6** funzionano ancora, ma **le versioni precedenti del gioco non sono compatibili con le mappe dello step 8** e non saranno in grado di leggerle correttamente.
+
+La mappa di questo step si riconosce perché si chiama: `mapstep8.txt`
+
+
+Il gioco ora si presenterà così:
+
+![Step 08](./resources/Step-08.png)
