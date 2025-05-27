@@ -206,3 +206,21 @@ Successivamente, ho ridimensionato tutte le texture e aggiornato il sistema di g
 Le mappe esistenti continuano a funzionare con le versioni precedenti alla 6, mentre le nuove mappe utilizzano il nuovo formato a partire dalla versione 6.
 
 Infine, ho sistemato la gestione delle guardie, che ora vengono controllate tutte insieme in modo centralizzato.
+
+## Step 7.0.0
+
+In questo step mi sono concentrato nello sviluppo dell'algoritmo di movimento delle guardie.  
+Ho fatto in modo che debbano raggiungere il percorso `TYPE_GUARD_ROUTE` più vicino e seguire quello.  
+Se nel loro campo visivo (5×5 nella direzione in cui stanno andando) compare un player, iniziano a seguirlo  
+calcolando la differenza tra la loro posizione e quella del player sugli assi x e y,  
+in modo da decidere se muoversi in verticale o orizzontale.
+
+Come negli step precedenti, ho inoltre corretto alcuni bug e fatto un leggero refactoring  
+nella classe principale `Game` (modifiche semplici, come la rinomina di alcune variabili per rendere il codice più leggibile).
+
+Ora la schermata di gioco si presenta così:
+
+![Schermata Step 07](./resources/Step-07.png)
+
+Inoltre ho capito come gestire la velocità delle guardie usando il delta time `dt`,  
+seguendo alcuni suggerimenti trovati su [SFML Forum](https://en.sfml-dev.org/forums/index.php?topic=7636.0).
