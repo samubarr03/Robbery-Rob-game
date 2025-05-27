@@ -243,3 +243,8 @@ La mappa di questo step si riconosce perché si chiama: `mapstep8.txt`
 Il gioco ora si presenterà così:
 
 ![Step 08](./resources/Step-08.png)
+
+
+## Step 9.0.0
+
+In questa fase ho sistemato gli sprite di vittoria e game over, che prima non venivano mostrati correttamente alla fine del gioco. Ho anche corretto un bug che impediva di vincere in qualsiasi circostanza. Inoltre, ho aggiunto la possibilità di salvare i nomi delle mappe anche contenenti numeri, e ho implementato la possibilità di cancellare caratteri mentre si sta scrivendo il nome della mappa (funzionalità che fino ad ora non era presente).

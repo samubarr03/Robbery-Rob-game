@@ -15,4 +15,4 @@ cp -r ../resources/* bin/resources/
 
 # Lancio l'eseguibile
 cd bin
-./Tappa08
+./Tappa09
