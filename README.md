@@ -196,3 +196,13 @@ che carica automaticamente la texture.
 A questo punto, ho anche aggiornato le funzioni che si occupano del posizionamento sulla mappa: non utilizzo più uno `switch`, visto che si presenterebbero più di 30 casi ma 
 avendo una `map` con `ID e Texture`. Vado direttamente a prendere la texture dalla mappa e la posiziono su n celle a seconda del valore di `width` e `height` dentro la struct texture
 
+
+
+## Step 6.0.0
+In questo step ho apportato diverse modifiche grafiche alla modalità `Disegna Mappa`.  
+Ho caricato le texture degli arredamenti e implementato la gestione del loro posizionamento sulla mappa.  
+Successivamente, ho ridimensionato tutte le texture e aggiornato il sistema di generazione della mappa.
+
+Le mappe esistenti continuano a funzionare con le versioni precedenti alla 6, mentre le nuove mappe utilizzano il nuovo formato a partire dalla versione 6.
+
+Infine, ho sistemato la gestione delle guardie, che ora vengono controllate tutte insieme in modo centralizzato.
