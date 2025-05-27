@@ -10,7 +10,7 @@ Guard::Guard(Matrix &matrix, sf::Vector2i startPos)
         return;
 
     // applico il dfs
-    bool visited[matrix.getCols()][matrix.getRows()] = {false};
+    std::vector<std::vector<bool>> visited(matrix.getCols(), std::vector<bool>(matrix.getRows(), false));
 
     std::vector<sf::Vector2i> stack;
     stack.push_back(nearest);

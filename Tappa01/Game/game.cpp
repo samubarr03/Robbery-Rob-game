@@ -35,13 +35,16 @@ Game::Game()
     // Bottoni home
     playButton.setSize({250, 100});
     playButton.setFillColor(sf::Color::Green);
-    playButton.setPosition({sf::VideoMode::getDesktopMode().size.x / 2 - playButton.getSize().x / 2,
-                            (sf::VideoMode::getDesktopMode().size.y * 2) / 3});
-
+    playButton.setPosition({
+        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - playButton.getSize().x / 2),
+        static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3)
+    });
     drawMapButton.setSize({250, 100});
     drawMapButton.setFillColor(sf::Color::Blue);
-    drawMapButton.setPosition({sf::VideoMode::getDesktopMode().size.x / 2 - drawMapButton.getSize().x / 2,
-                               (sf::VideoMode::getDesktopMode().size.y * 2) / 3 + 120});
+   drawMapButton.setPosition({
+        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - drawMapButton.getSize().x / 2),
+        static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3 + 120)
+    });
 
     // Testi home
     playText.setString("Gioca");
@@ -225,8 +228,11 @@ void Game::drawGridToCreateMap()
         for (int x = 0; x < GRID_SIZE; x++)
         {
             sf::RectangleShape cell(sf::Vector2f(CELL_SIZE, CELL_SIZE));
-            cell.setPosition({x * CELL_SIZE + GRID_OFFSET_X,
-                              y * CELL_SIZE + GRID_OFFSET_Y});
+cell.setPosition(sf::Vector2f(
+    static_cast<float>(x * CELL_SIZE + GRID_OFFSET_X),
+    static_cast<float>(y * CELL_SIZE + GRID_OFFSET_Y)
+));
+
             cell.setOutlineThickness(1);
             // a seconda di che numero c'è nella matrice disegno il colore del colore del bottone
             switch (createMap[y][x])
