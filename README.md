@@ -248,3 +248,14 @@ Il gioco ora si presenterà così:
 ## Step 9.0.0
 
 In questa fase ho sistemato gli sprite di vittoria e game over, che prima non venivano mostrati correttamente alla fine del gioco. Ho anche corretto un bug che impediva di vincere in qualsiasi circostanza. Inoltre, ho aggiunto la possibilità di salvare i nomi delle mappe anche contenenti numeri, e ho implementato la possibilità di cancellare caratteri mentre si sta scrivendo il nome della mappa (funzionalità che fino ad ora non era presente).
+
+
+## Step 10.0.0
+
+In questo step ho riposizionato i bottoni di "Disegna mappa", assegnando loro dei colori più gradevoli e gestendo la loro creazione tramite una `struct` e un ciclo, per evitare di riscrivere le stesse dichiarazioni. Ora "Disegna mappa" si presenta così:
+
+![Step 10](./resources/Step-10.png)
+
+Inoltre, ho corretto due bug:  
+- uno riguardante l’aggiornamento dello score, che non si azzerava quando si cambiava mappa;
+- un altro relativo al piazzamento degli oggetti, che prima potevano essere piazzati uno sopra l’altro.

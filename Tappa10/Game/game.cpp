@@ -60,24 +60,18 @@ Game::Game()
     // Bottoni home
     playButton.setSize({250, 100});
     playButton.setFillColor(sf::Color::Green);
-    playButton.setPosition({
-        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - playButton.getSize().x / 2),
-        static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3)
-    });
+    playButton.setPosition({static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - playButton.getSize().x / 2),
+                            static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3)});
 
     selectMapButton.setSize({250, 100});
     selectMapButton.setFillColor(sf::Color::Blue);
-    selectMapButton.setPosition({
-        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - selectMapButton.getSize().x / 2) +300,
-        static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3)
-    });
+    selectMapButton.setPosition({static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - selectMapButton.getSize().x / 2) + 300,
+                                 static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3)});
 
     drawMapButton.setSize({250, 100});
     drawMapButton.setFillColor(sf::Color::Blue);
-    drawMapButton.setPosition({
-        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - drawMapButton.getSize().x / 2),
-        static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3 + 120)
-    });
+    drawMapButton.setPosition({static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - drawMapButton.getSize().x / 2),
+                               static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3 + 120)});
 
     // Testi home
     playText.setString("Gioca");
@@ -92,101 +86,64 @@ Game::Game()
     drawMapText.setFillColor(sf::Color::White);
     drawMapText.setPosition({drawMapButton.getPosition().x + 20, drawMapButton.getPosition().y + 30});
 
-    // Bottoni disegna mappa
-    wallButton.setSize({150, 50});
-    wallButton.setFillColor(sf::Color::Red);
-    wallButton.setPosition({20, 160});
+    // Lista di bottoni
+    sf::Vector2f buttonSize = {220, 60};
+    const float startX = 20;
+    const float startY = 160;
+    const float space = 80;
 
-    playerButton.setSize({150, 50});
-    playerButton.setFillColor(sf::Color::Green);
-    playerButton.setPosition({20, 230});
+    std::vector<ButtonInfo> buttons = {
+        {&saveMapButton, &saveMapButtonText, "Salva Mappa", sf::Color(0, 200, 0)},
+        {&importMapButton, &importMapButtonText, "Importa Mappa", sf::Color(0, 200, 0)},
+        {&exitButton, &exitButtonText, "Uscita", sf::Color(200, 0, 0)},
+        {&floorButton, &floorButtonText, "Pavimento", sf::Color(70, 130, 180)},
+        {&wallButton, &wallButtonText, "Muro", sf::Color(70, 130, 180)},
+        {&playerButton, &playerButtonText, "Giocatore", sf::Color(70, 130, 180)},
+        {&guardButton, &guardButtonText, "Guardia", sf::Color(70, 130, 180)},
+        {&guardRouteButton, &guardRouteButtonText, "Cammino Guardia", sf::Color(70, 130, 180)},
+        {&lootButton, &lootButtonText, "Bottino", sf::Color(70, 130, 180)},
+    };
 
-    guardButton.setSize({150, 50});
-    guardButton.setFillColor(sf::Color::Magenta);
-    guardButton.setPosition({20, 300});
+    for (int i = 0; i < buttons.size(); i++)
+    {
+        auto &btn = buttons[i];
+        sf::Vector2f position = {startX, startY + i * space};
 
-    saveMapButton.setSize({150, 50});
-    saveMapButton.setFillColor(sf::Color::Cyan);
-    saveMapButton.setPosition({20, 370});
+        btn.shape->setSize(buttonSize);
+        btn.shape->setFillColor(btn.color);
+        btn.shape->setOutlineThickness(2);
+        btn.shape->setOutlineColor(sf::Color::Black);
+        btn.shape->setPosition(position);
 
-    floorButton.setSize({150, 50});
-    floorButton.setFillColor(sf::Color::Cyan);
-    floorButton.setPosition({20, 440});
-
-    importMapButton.setSize({150, 50});
-    importMapButton.setFillColor(sf::Color::Cyan);
-    importMapButton.setPosition({20, 510});
-
-    guardRouteButton.setSize({150, 50});
-    guardRouteButton.setFillColor(sf::Color::Cyan);
-    guardRouteButton.setPosition({20, 580});
-
-    lootButton.setSize({150, 50});
-    lootButton.setFillColor(sf::Color::Cyan);
-    lootButton.setPosition({20, 650});
-
-    exitButton.setSize({150, 50});
-    exitButton.setFillColor(sf::Color::Cyan);
-    exitButton.setPosition({20, 720});
-
-    // Testi bottoni disegna mappa
-    wallButtonText.setString("Muro");
-    wallButtonText.setFillColor(sf::Color::White);
-    wallButtonText.setPosition({50, 170});
-
-    playerButtonText.setString("Player");
-    playerButtonText.setFillColor(sf::Color::White);
-    playerButtonText.setPosition({50, 240});
-
-    guardButtonText.setString("Guardia");
-    guardButtonText.setFillColor(sf::Color::White);
-    guardButtonText.setPosition({50, 310});
-
-    saveMapButtonText.setString("Salva Mappa");
-    saveMapButtonText.setFillColor(sf::Color::White);
-    saveMapButtonText.setPosition({30, 380});
-
-    floorButtonText.setString("Pavimento");
-    floorButtonText.setFillColor(sf::Color::White);
-    floorButtonText.setPosition({30, 450});
-
-    importMapButtonText.setString("Importa Mappa");
-    importMapButtonText.setFillColor(sf::Color::White);
-    importMapButtonText.setPosition({30, 520});
-
-    guardRouteButtonText.setString("Percorso Guardia");
-    guardRouteButtonText.setFillColor(sf::Color::White);
-    guardRouteButtonText.setPosition({30, 590});
-
-    lootButtonText.setString("Loot");
-    lootButtonText.setFillColor(sf::Color::White);
-    lootButtonText.setPosition({30, 660});
-
-    exitButtonText.setString("Uscita");
-    exitButtonText.setFillColor(sf::Color::White);
-    exitButtonText.setPosition({30, 730});
+        btn.text->setString(btn.label);
+        btn.text->setPosition({
+            static_cast<float>(btn.shape->getPosition().x + 20),
+            static_cast<float>(btn.shape->getPosition().y + ( buttonSize.y/3))
+        });
+    }
 
     std::vector<std::pair<int, std::string>> furnitureTypes = {
-        {TYPE_FURNITURE_BED, "BED"},
-        {TYPE_FURNITURE_WARDROBE, "WARDROBE"},
-        {TYPE_FURNITURE_KITCHEN, "KITCHEN"},
-        {TYPE_FURNITURE_TABLE, "TABLE"},
-        {TYPE_FURNITURE_FRIDGE, "FRIDGE"},
-        {TYPE_FURNITURE_STOVE, "STOVE"},
-        {TYPE_FURNITURE_SINK, "SINK"},
-        {TYPE_FURNITURE_SOFA, "SOFA"},
-        {TYPE_FURNITURE_TV, "TV"},
-        {TYPE_FURNITURE_PLANT, "PLANT"},
-        {TYPE_FURNITURE_FIREPLACE, "FIREPLACE"},
-        {TYPE_FURNITURE_BATH, "BATH"},
-        {TYPE_FURNITURE_BATH_SINK, "BATH_SINK"},
-        {TYPE_FURNITURE_TOILET, "TOILET"},
-        {TYPE_FURNITURE_WASHINGMACHINE, "WASHINGMACHINE"},
+        {TYPE_FURNITURE_BED, "Letto"},
+        {TYPE_FURNITURE_WARDROBE, "Armadio"},
+        {TYPE_FURNITURE_KITCHEN, "Cucina"},
+        {TYPE_FURNITURE_TABLE, "Tavolo"},
+        {TYPE_FURNITURE_FRIDGE, "Frigo"},
+        {TYPE_FURNITURE_STOVE, "Fornelli"},
+        {TYPE_FURNITURE_SINK, "Lavandino"},
+        {TYPE_FURNITURE_SOFA, "Divano"},
+        {TYPE_FURNITURE_TV, "Televisione"},
+        {TYPE_FURNITURE_PLANT, "Pianta"},
+        {TYPE_FURNITURE_FIREPLACE, "Camino"},
+        {TYPE_FURNITURE_BATH, "Vasca"},
+        {TYPE_FURNITURE_BATH_SINK, "Lavandino da bagno"},
+        {TYPE_FURNITURE_TOILET, "Gabinetto"},
+        {TYPE_FURNITURE_WASHINGMACHINE, "Lavatrice"},
     };
 
     // disegno i bottoni dell' arredamento
     float dropdownX = playerButton.getPosition().x + 250;
-    float dropdownY = 50;
+    float dropdownY = 70;
+    buttonSize = {240, 50};
 
     for (int i = 0; i < furnitureTypes.size(); i++)
     {
@@ -194,7 +151,8 @@ Game::Game()
 
         FurnitureItem item(id, name, font);
 
-        item.buttonShape.setPosition(sf::Vector2f(dropdownX, dropdownY + i * 55));
+        item.buttonShape.setPosition(sf::Vector2f(dropdownX, dropdownY + i * 60));
+        item.buttonShape.setSize(buttonSize);
         item.label.setPosition(sf::Vector2f(item.buttonShape.getPosition().x + 10, item.buttonShape.getPosition().y + 10));
         item.label.setFillColor(sf::Color::Black);
 
@@ -216,9 +174,10 @@ void Game::handleMouseClick(sf::Vector2f mousePos)
 
             if (!matrix.isMapLoaded())
             {
-                matrix.loadMapFromFile("resources/mapNew.txt");
+                matrix.loadMapFromFile("resources/newMapComplete.txt");
             }
 
+            player.resetScore();
             gameMode = true;
             drawMap = false;
             matrix.calculateTotalScore();
@@ -256,6 +215,7 @@ void Game::handleMouseClick(sf::Vector2f mousePos)
                 std::cout << "Nessuna mappa selezionata\n";
                 return;
             }
+            std::cout << "quindi non dovrei essere qui se non ho selezionato una mappa";
             matrix.loadMapFromFile(mapFile);
         }
 
@@ -342,7 +302,7 @@ void Game::handleMouseClick(sf::Vector2f mousePos)
                 std::cout << "Nessuna mappa selezionata\n";
                 return;
             }
-
+            std::cout << "quindi non dovrei essere qui se non ho selezionato una mappa";
             matrix.loadMapFromFile(mapFile);
             gameMode = false;
             drawMap = true;
@@ -584,12 +544,12 @@ std::string Game::askMapName(sf::RenderWindow &window)
                         done = true;
                     }
                 }
-                //tasto per cancellare
-                else if (keyPressed->code == sf::Keyboard::Key::Backspace){
+                // tasto per cancellare
+                else if (keyPressed->code == sf::Keyboard::Key::Backspace)
+                {
                     if (!input.empty())
                         input.pop_back();
                     inputText.setString(input);
-
                 }
                 else if (keyPressed->code >= sf::Keyboard::Key::A && keyPressed->code <= sf::Keyboard::Key::Z)
                 {
@@ -680,6 +640,16 @@ std::string Game::selectMapToPlay(sf::RenderWindow &window)
                     }
                 }
             }
+
+            else if (const auto *keyPressed = event.getIf<sf::Event::KeyPressed>())
+            {
+                if (keyPressed->code == sf::Keyboard::Key::Escape)
+                {
+                    return "";
+                }
+            }
+
+
         }
 
         window.clear();

@@ -6,7 +6,7 @@ mkdir -p build
 cd build
 
 # Compilo
-cmake ..
+cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 make -j$(nproc)
 
 # Inserisco le risorse
@@ -15,4 +15,4 @@ cp -r ../resources/* bin/resources/
 
 # Lancio l'eseguibile
 cd bin
-./Tappa09
+./Tappa10

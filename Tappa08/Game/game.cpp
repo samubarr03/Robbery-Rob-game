@@ -60,7 +60,7 @@ Game::Game()
     selectMapButton.setSize({250, 100});
     selectMapButton.setFillColor(sf::Color::Blue);
     selectMapButton.setPosition({
-        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 - selectMapButton.getSize().x / 2),
+        static_cast<float>(sf::VideoMode::getDesktopMode().size.x / 2 -  selectMapButton.getSize().x / 2) +300,
         static_cast<float>((sf::VideoMode::getDesktopMode().size.y * 2) / 3)
     });
 
