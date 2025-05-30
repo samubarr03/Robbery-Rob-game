@@ -1,6 +1,7 @@
 # Robbery-Rob-game
 Gioco 2D con visuale dall'alto ispirato a Robbery Bob. Il giocatore deve rubare un oggetto in vari edifici evitando le guardie. Diverse difficoltà influenzano il campo visivo dei nemici. Il gioco finisce solo se il giocatore viene raggiunto.
 
+<!--
 ## Step 1
 
 **Generazione della griglia di gioco con settaggi standard**  
@@ -56,6 +57,7 @@ ho creato una schermata iniziale con 2 bottoni:
 Alla fine delle modifiche cliccando su **salva** la mappa viene automoaticamente salvata.  
 In questo modo la creazione delle mappe sarà molto più veloce e c'è la possibilità che anche il player si crei delle mappe e con la possibilità in seguito di impostarne la difficoltà.
 
+-->
 ## Step 1.0.0
 In questa versione ho adattato il mio progetto a un **pattern generale**, riorganizzando i file:
 
@@ -72,7 +74,7 @@ Per aiutarmi nella migrazione, ho fatto riferimento alla documentazione ufficial
  A livello di migliorie effettive nel gioco, in questa fase **non ne sono state svolte**.
 
 
-# Step 02.0.0
+## Step 02.0.0
 
 In questo step ho: 
 - Aggiunto **Seleziona mappa** e **Salva mappa** tramite una finestra di dialogo, mi è stato utile il [forum SFML dialog](https://en.sfml-dev.org/forums/index.php?topic=29473.0)
@@ -85,7 +87,7 @@ Ora la schermata di gioco si presenta così:
 ![Step 2](./resources/Step2-game.png)
 
 
-# Step 3.0.0
+## Step 3.0.0
 In questo step ho aggiunto:
 - **Le guardie** facendo una brutta versione dalla classe player. Fino ad ora ho solo sviluppato l' algoritmo che a inizio gioco visualizza tutte le guardie e crea ogni guardia inserendola in un vector apposta di Guardie.
 - Le texture per i muri
